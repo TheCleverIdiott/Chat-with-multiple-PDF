@@ -13,13 +13,14 @@ def frontend():
 
         st.subheader("Upload PDFs here")
         pdfs = st.file_uploader("Upload PDF files", type="pdf", accept_multiple_files=True)
-        st.button('Process')
 
-    if pdfs and api_key is not None:
-        if question:
-            ans = comp_process(apikey=api_key, pdfs=pdfs, question=question)
-            st.write(ans)
-
+        if st.button('Process'):
+            if pdfs and api_key:
+                with st.spinner('Processing...'):
+                    ans = comp_process(apikey=api_key, pdfs=pdfs, question=question)
+                    st.write(ans)
+            else:
+                st.error("Please upload PDFs and enter an API key.")
 
 if __name__ == "__main__":
     frontend()
