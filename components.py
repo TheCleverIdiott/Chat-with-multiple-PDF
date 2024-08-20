@@ -26,30 +26,3 @@ def advanced_options():
     language = st.sidebar.selectbox("Select language", ["English", "Spanish", "French", "German"])
     st.sidebar.slider("Set confidence threshold", min_value=0.0, max_value=1.0, value=0.5)
     return language
-
-def main():
-    st.title("PDF Processing Application")
-    
-    # Sidebar configuration
-    api_key = "your-default-api-key"  # You can set a default value if needed
-    processing_speed, response_format, theme, show_advanced = sidebar(api_key)
-    
-    # PDF Uploader
-    uploaded_pdfs = pdf_uploader()
-    
-    # Display advanced options if selected
-    if show_advanced:
-        language = advanced_options()
-
-    # Handle uploaded PDFs
-    if uploaded_pdfs:
-        st.write("PDFs uploaded successfully!")
-        for pdf in uploaded_pdfs:
-            st.write(f"- {pdf.name}")
-
-    # Display selected options
-    st.subheader("Selected Configuration:")
-    st.write(f"Processing Speed: {processing_speed}")
-    st.write(f"Response Format: {response_format}")
-    st.write(f"Theme: {theme}")
-    i
